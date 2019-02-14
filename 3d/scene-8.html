@@ -13,6 +13,9 @@
         <img id="soil" src="a.jpg">
         <img id="bands" src="c.jpg">
         <img id="window" src="d.jpg">
+
+        <a-asset-item id="drone" src="mech_drone/scene.gltf"></a-asset-item>
+        <audio id="robot" src="robot.ogg" preload="auto"></audio>
       </a-assets>
 
       <a-entity
@@ -23,7 +26,7 @@
           material="src: #window; side: double"></a-entity>
       <a-cylinder height="6.0" radius="5" theta-length="70" open-ended="true"
         side="double" position="0 3 -4" rotation="0 140 0"
-        color="red" src="#bands" ></a-cylinder>
+        color="red"></a-cylinder>
       <a-curvedimage height="6.0" radius="5" theta-length="70"
         position="0 3 -4" rotation="0 60 0" src="#window"></a-curvedimage>
 
@@ -31,12 +34,29 @@
       <a-cylinder position="1 1.25 -3" radius="0.5" height="2.5" src="#bands"></a-cylinder>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="15" height="6" repeat="4 2" src="#soil"></a-plane>
 
+      <a-entity position="1 2.5 -3" gltf-model="#drone" animation-mixer
+                scale="0.01 0.01 0.01"
+                animation="property: rotation; dur: 10000; to:0 360 0; loop: true">
+      </a-entity>
+
+      <a-entity position="-5 3 -1" gltf-model="#drone" animation-mixer
+                scale="0.01 0.01 0.01"
+                animation="property: position; dur: 10000; to: -3 .5 -1; dir: alternate; loop: true"
+                sound="src: #robot; autoplay: true; loop: true; distanceModel: exponential">
+      </a-entity>
+
+      <a-entity position="6 3 -1" gltf-model="#drone" animation-mixer
+                scale="0.01 0.01 0.01"
+                animation="property: position; dur: 10000; to: 4 .5 -1; dir: alternate; loop: true"
+                sound="src: #robot; autoplay: true; loop: true; distanceModel: exponential">
+      </a-entity>
+
       <a-light type="ambient" color="grey"></a-light>
       <a-light type="point" intensity="2" position="-2 2 4"></a-light>
 
       <a-sky color="lightgrey"></a-sky>
 
-      <a-entity movement-controls="fly: true" position="0 0 3">
+      <a-entity movement-controls="fly: true" position="0 0 5">
         <a-entity camera position="0 1.6 0" look-controls></a-entity>
       </a-entity>
 
